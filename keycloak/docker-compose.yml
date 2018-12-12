@@ -1,0 +1,48 @@
+version: '3'
+
+volumes:
+  database_data:
+    driver: local
+
+services:
+  secured:
+    image: nginxdemos/hello
+    ports:
+      - 80:80
+
+  gatekeeper:
+    image: keycloak/keycloak-gatekeeper
+    volumes:
+      - ./keycloak-gatekeeper:/opt/logibec/keycloak-gatekeeper
+    environment:
+      PROXY_CONFIG_FILE: /opt/logibec/keycloak-gatekeeper/config.yml
+    ports:
+      - 3000:3000
+    depends_on:
+      - keycloak
+
+  database:
+    image: postgres
+    volumes:
+      - database_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+
+  keycloak:
+    image: jboss/keycloak
+    network_mode: "host"
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: database
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - 8080:8080
+    depends_on:
+      - database

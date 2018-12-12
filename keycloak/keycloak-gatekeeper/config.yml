@@ -1,14 +1,14 @@
 
 
 # is the url for retrieve the openid configuration - normally the <server>/auth/realm/<realm_name>
-discovery-url: http://172.16.52.165:8080/auth/realms/master
+discovery-url: http://keycloak:8080/auth/realms/master
 # the client id for the 'client' application
 client-id: gatekeeper
 # the secret associated to the 'client' application - note the client_secret is optional, required for
 # oauth2 access_type=confidential i.e. the client is being verified
 client-secret: test
 # the interface definition you wish the proxy to listen, all interfaces is specified as ':<port>'
-listen: 172.16.52.165:3000
+listen: 0.0.0.0:3000
 # log all incoming requests
 enable-logging: true
 # log in json format
@@ -24,7 +24,7 @@ tls-private-key:
 # the public key for the ca, used for mutual TLS
 tls-ca-certificate:
 # the redirection url, essentially the site url, note: /oauth/callback is added at the end
-redirection-url: http://172.16.52.165:3000
+redirection-url: http://gatekeeper:3000
 # the encryption key used to encode the session state
 encryption-key: E62F5367F69FA8F73C38C975970D9E40
 # the name of the access cookie, defaults to kc-access

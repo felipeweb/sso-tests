@@ -32,7 +32,6 @@ services:
 
   keycloak:
     image: jboss/keycloak
-    network_mode: "host"
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: database

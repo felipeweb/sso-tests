@@ -23,8 +23,6 @@ tls-cert:
 tls-private-key:
 # the public key for the ca, used for mutual TLS
 tls-ca-certificate:
-# the redirection url, essentially the site url, note: /oauth/callback is added at the end
-redirection-url: http://gatekeeper:3000
 # the encryption key used to encode the session state
 encryption-key: E62F5367F69FA8F73C38C975970D9E40
 # the name of the access cookie, defaults to kc-access

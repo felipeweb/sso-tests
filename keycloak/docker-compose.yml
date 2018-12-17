@@ -39,8 +39,8 @@ services:
       DB_DATABASE: keycloak
       DB_USER: keycloak
       DB_PASSWORD: password
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_USER: nuveo
+      KEYCLOAK_PASSWORD: nuveo
     ports:
       - 8080:8080
     depends_on:
